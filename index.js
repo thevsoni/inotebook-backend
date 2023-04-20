@@ -1,6 +1,9 @@
 const main = require('./db');
 const express = require('express')
 var cors = require('cors')//to call my backend from my browser
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 //connect to mongodb
 main().then(() => console.log("connected")).catch(err => console.log(err));

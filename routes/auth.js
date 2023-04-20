@@ -6,8 +6,9 @@ const bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 var fetchuser = require('../middlewear/fetchuser');
 
-const JWT_SECRET = "Harryisagoodb$oy";
+const dotenv = require('dotenv');
 
+dotenv.config();
 
 
 //Route 1 : create a user using: POST "/api/auth/createuser" , //no login required
@@ -45,14 +46,14 @@ router.post('/createuser', [
                     id: user.id
                 }
             }
-            const authtoken = jwt.sign(data, JWT_SECRET);
+            const authtoken = jwt.sign(data, process.env.JWT_SECRET);
             success = true;
             res.json({ success, authtoken });
             console.log(authtoken);
             console.log("user added successfully")
         } catch (err) {
-            console.log("some error");
-            res.status(500).send("some error occured, so user not added");
+            console.log("some error", err);
+            res.status(500).send("some error occured, so user not added", err);
         }
 
     });
@@ -88,7 +89,7 @@ router.post('/login', [
                 id: user.id
             }
         }
-        const authtoken = jwt.sign(data, JWT_SECRET);
+        const authtoken = jwt.sign(data, process.env.JWT_SECRET);
         console.log("login successfull")
         console.log(authtoken)
         success = true;
