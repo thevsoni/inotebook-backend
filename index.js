@@ -10,7 +10,7 @@ main().then(() => console.log("connected")).catch(err => console.log(err));
 
 
 const app = express()
-const port = 5000
+const port = process.env.PORT || 5000
 
 app.use(cors()); //to fetch api from backend bcs we cant directly fetch our backend from our browser using frontend
 //

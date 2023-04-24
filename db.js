@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
-// const mongoURI = 'mongodb+srv://thevsoni:Vishal2828@cluster0.h75ole2.mongodb.net/iNoteBook?retryWrites=true&w=majority';
+const dotenv = require('dotenv');
+dotenv.config();
+
 
 async function main() {
+    console.log(process.env.mongoURI);
     await mongoose.connect(process.env.mongoURI, {
         useNewUrlParser: true,
         useUnifiedTopology: true
